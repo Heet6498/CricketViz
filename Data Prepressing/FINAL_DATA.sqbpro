@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/19055/Desktop/all_2.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="browser query pragmas structure" current="1"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="150"/><column_width id="3" width="1902"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,22:mainall_teams_cricket_data"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="all_teams_cricket_data" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="110"/><column index="2" value="78"/><column index="3" value="101"/><column index="4" value="73"/><column index="5" value="61"/><column index="6" value="61"/><column index="7" value="202"/><column index="8" value="193"/><column index="9" value="61"/><column index="10" value="300"/><column index="11" value="163"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 1">-- Updating team names
+
+update all_teams_cricket_data set team = 'New Zealand' where team LIKE &quot;%New%&quot;
+update all_teams_cricket_data set team = 'West Indies' where team LIKE &quot;%West%&quot;
+update all_teams_cricket_data set team = 'Sri Lanka' where team LIKE &quot;%Sri%&quot;
+update all_teams_cricket_data set team = 'East Africa' where team LIKE &quot;%Africa%&quot;
+update all_teams_cricket_data set team = 'South Africa' where team LIKE &quot;%South%&quot;
+update all_teams_cricket_data set team = 'East Africa' where team LIKE &quot;%East%&quot;
+update all_teams_cricket_data set team = 'Asia XI' where team LIKE &quot;%Asia%&quot;
+update all_teams_cricket_data set team = 'Hong Kong' where team LIKE &quot;%Hong%&quot;
+update all_teams_cricket_data set team = 'West Indies' where team LIKE &quot;%West%&quot;
+
+-- Deleting all wrong team names
+DELETE FROM all_teams_cricket_data WHERE team = 'Asia XI'
+DELETE FROM all_teams_cricket_data WHERE team = 'ICC'
+
+-- updating results
+update all_teams_cricket_data set result = 'won' where margin LIKE &quot;%won%&quot;
+update all_teams_cricket_data set result = 'lost' where margin LIKE &quot;%lost%&quot;
+UPDATE all_teams_cricket_data set result = null where result NOT LIKE &quot;%won%&quot; AND result NOT LIKE &quot;%lost%&quot; AND result NOT LIKE &quot;%tied%&quot;
+
+-- updating margin
+UPDATE all_teams_cricket_data set margin = null WHERE margin NOT LIKE &quot;%wickets%&quot; AND margin NOT LIKE &quot;%runs%&quot; AND margin NOT LIKE &quot;%won%&quot; AND margin NOT LIKE &quot;%lost%&quot;
+
+update all_teams_cricket_data set margin = trim(margin,'won')
+
+update all_teams_cricket_data set margin = trim(margin,'lost')
+
+update all_teams_cricket_data set margin = margin || ' ' || 'run' where br = 'runs'
+
+update all_teams_cricket_data set margin = margin || ' ' || 'wicke' where br = 'wickets'
+
+DELETE FROM all_teams_cricket_data WHERE margin like &quot;%-%&quot;
+
+
+-- updating br
+
+UPDATE all_teams_cricket_data set br = null WHERE br like &quot;%runs%&quot;
+UPDATE all_teams_cricket_data set br = null WHERE br like &quot;%wickets%&quot;
+UPDATE all_teams_cricket_data set br = null WHERE br like &quot;%won%&quot;
+UPDATE all_teams_cricket_data set br = null WHERE br like &quot;%lost%&quot;
+UPDATE all_teams_cricket_data set br = null WHERE br like &quot;%1st%&quot;
+UPDATE all_teams_cricket_data set br = null WHERE br like &quot;%2nd%&quot;
+UPDATE all_teams_cricket_data set br = null WHERE br like &quot;%-%&quot;
+
+-- updating toss
+UPDATE all_teams_cricket_data set toss = null WHERE toss NOT like &quot;%won%&quot; AND toss NOT like &quot;%lost%&quot;
+
+-- updating bat
+UPDATE all_teams_cricket_data set bat = null WHERE bat NOT like &quot;%1st%&quot; AND bat NOT like &quot;%2nd%&quot;
+
+-- updating opposition
+update all_teams_cricket_data set opposition = 'New Zealand' where opposition LIKE &quot;%New%&quot;
+update all_teams_cricket_data set opposition = 'New Zealand' where opposition LIKE &quot;%Zealand%&quot;
+update all_teams_cricket_data set opposition = 'West Indies' where opposition LIKE &quot;%West%&quot;
+update all_teams_cricket_data set opposition = 'Sri Lanka' where opposition LIKE &quot;%Sri%&quot;
+update all_teams_cricket_data set opposition = 'East Africa' where opposition LIKE &quot;%East%&quot;
+update all_teams_cricket_data set opposition = 'East Africa' where opposition LIKE &quot;%Africa%&quot;
+update all_teams_cricket_data set opposition = 'South Africa' where opposition LIKE &quot;%South%&quot;
+update all_teams_cricket_data set opposition = 'Asia XI' where opposition LIKE &quot;%Asia%&quot;
+update all_teams_cricket_data set opposition = 'Hong Kong' where opposition LIKE &quot;%Hong%&quot;
+update all_teams_cricket_data set opposition = 'Hong Kong' where opposition LIKE &quot;%Kong%&quot;
+
+update all_teams_cricket_data set opposition = 'West Indies' where opposition LIKE &quot;%West%&quot;
+update all_teams_cricket_data set opposition = 'England' where opposition LIKE &quot;%England%&quot;
+update all_teams_cricket_data set opposition = 'Australia' where opposition LIKE &quot;%Australia%&quot;
+update all_teams_cricket_data set opposition = 'Pakistan' where opposition LIKE &quot;%Pakistan%&quot;
+update all_teams_cricket_data set opposition = 'India' where opposition LIKE &quot;%India%&quot;
+update all_teams_cricket_data set opposition = 'Sri Lanka' where opposition LIKE &quot;%Lanka%&quot;
+DELETE FROM all_teams_cricket_data WHERE opposition = 'The'
+DELETE FROM all_teams_cricket_data WHERE opposition = 'World XI'
+update all_teams_cricket_data set opposition = 'Zimbabwe' where opposition LIKE &quot;%Zimbabwe%&quot;
+update all_teams_cricket_data set opposition = 'Bangladesh' where opposition LIKE &quot;%Bangladesh%&quot;
+update all_teams_cricket_data set opposition = 'Kenya' where opposition LIKE &quot;%Kenya%&quot;
+update all_teams_cricket_data set opposition = 'Scotland' where opposition LIKE &quot;%Scotland%&quot;
+update all_teams_cricket_data set opposition = 'Canada' where opposition LIKE &quot;%Canada%&quot;
+update all_teams_cricket_data set opposition = 'Ireland' where opposition LIKE &quot;%Ireland%&quot;
+update all_teams_cricket_data set opposition = 'Afghanistan' where opposition LIKE &quot;%Afghanistan%&quot;
+update all_teams_cricket_data set opposition = 'P.N.G.' where opposition LIKE &quot;%P.N.G.%&quot;
+update all_teams_cricket_data set opposition = 'U.A.E.' where opposition LIKE &quot;%U.A.E.%&quot;
+update all_teams_cricket_data set opposition = 'U.S.A.' where opposition LIKE &quot;%U.S.A.%&quot;
+update all_teams_cricket_data set opposition = 'Netherlands' where opposition LIKE &quot;%Netherlands%&quot;
+update all_teams_cricket_data set opposition = 'West Indies' where opposition LIKE &quot;%Indies%&quot;
+update all_teams_cricket_data set opposition = 'West Indies' where opposition LIKE &quot;%Indies%&quot;
+update all_teams_cricket_data set opposition = 'Bermuda' where opposition LIKE &quot;%Bermuda%&quot;
+update all_teams_cricket_data set opposition = 'Oman' where opposition LIKE &quot;%Oman%&quot;
+
+DELETE FROM all_teams_cricket_data WHERE opposition = 'Cape'
+DELETE FROM all_teams_cricket_data WHERE opposition = 'Dublin'
+DELETE FROM all_teams_cricket_data WHERE opposition = 'Greater'
+DELETE FROM all_teams_cricket_data WHERE opposition = 'Gros'
+DELETE FROM all_teams_cricket_data WHERE opposition = 'Hyderabad'
+DELETE FROM all_teams_cricket_data WHERE opposition = 'Kuala'
+DELETE FROM all_teams_cricket_data WHERE opposition = 'Melbourne'
+DELETE FROM all_teams_cricket_data WHERE opposition = 'Mong'
+DELETE FROM all_teams_cricket_data WHERE opposition = 'St'
+DELETE FROM all_teams_cricket_data WHERE opposition = 'Tunbridge'
+DELETE FROM all_teams_cricket_data WHERE opposition = 'XI'
+DELETE FROM all_teams_cricket_data WHERE opposition = 'AI'
+
+
+DELETE FROM all_teams_cricket_data WHERE opposition like &quot;%Port%&quot;
+DELETE FROM all_teams_cricket_data WHERE opposition like &quot;%Colombo%&quot;
+DELETE FROM all_teams_cricket_data WHERE opposition like &quot;%ICCA%&quot;
+DELETE FROM all_teams_cricket_data WHERE opposition like &quot;%Namibia%&quot;
+
+DELETE FROM all_teams_cricket_data WHERE opposition = 'Asia XI'
+
+--UPDATE ground
+update all_teams_cricket_data set ground = 'Colombo' where ground LIKE &quot;%PSS%&quot;
+update all_teams_cricket_data set ground = 'Colombo' where ground LIKE &quot;%RPS%&quot;
+update all_teams_cricket_data set ground = 'Colombo' where ground LIKE &quot;%SSC%&quot;
+update all_teams_cricket_data set ground = 'Hydrabad' where ground LIKE &quot;%Sind%&quot;
+update all_teams_cricket_data set ground = 'Dublin' where ground LIKE &quot;%Malahide%&quot;
+update all_teams_cricket_data set ground = 'Mumbai' where ground LIKE &quot;%BS%&quot;
+update all_teams_cricket_data set ground = 'Hydrabad' where ground LIKE &quot;%Deccan%&quot;
+update all_teams_cricket_data set ground = 'Dubai' where ground LIKE &quot;%DSC%&quot;
+update all_teams_cricket_data set ground = 'Nairobi' where ground LIKE &quot;%Gym%&quot;
+update all_teams_cricket_data set ground = 'Nairobi' where ground LIKE &quot;%Ruaraka%&quot;
+update all_teams_cricket_data set ground = 'Nairobi' where ground LIKE &quot;%Jaff%&quot;
+update all_teams_cricket_data set ground = 'Nairobi' where ground LIKE &quot;%Aga%&quot;
+update all_teams_cricket_data set ground = 'Melbourne' where ground LIKE &quot;%Docklands%&quot;
+DELETE FROM all_teams_cricket_data WHERE ground = '(NW)'
+DELETE FROM all_teams_cricket_data WHERE ground = 'Amerat'
+
+Amerat
+
+
+
+
+
+
+
+
+
+
+
+
+
+</sql><current_tab id="0"/></tab_sql></sqlb_project>
