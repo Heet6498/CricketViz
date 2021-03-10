@@ -1,8 +1,5 @@
-streamlit
-pandas
-numpy
-seaborn
-matplotlib.pyplot
-datetime
-csv
-statistics
+streamlit==0.76.0
+pandas==1.1.2
+numpy==1.19.2
+seaborn==0.11.0
+matplotlib==3.3.2
