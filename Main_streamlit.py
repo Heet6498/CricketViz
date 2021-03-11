@@ -120,6 +120,12 @@ plot_chart(plot_df, title_list)
 html = ''' 
 <style>
 footer {visibility:hidden;}
+#MainMenu {visibility: hidden;}
+           
+
+body{background-color: #FCFFDE;}
+     
+
 </style>
 '''
 
