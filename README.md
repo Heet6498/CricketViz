@@ -11,7 +11,7 @@ Streamlit is an open-source Python library that makes it easy to create and shar
 
 ### Dataset
 The table contains fields such as Teams, Results, Margin, BR, Toss, Bat, Opposition team, Ground, and Year.
-##### Approch
+##### - Approch
 - Data scraping from ESPNCricinfo
 - Data cleaning using SQLite and Python
 
